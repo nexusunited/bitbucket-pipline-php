@@ -11,6 +11,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && mv composer.phar /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && /usr/local/bin/composer global require hirak/prestissimo
+ && curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
+ && ./configure --prefix=/usr/local
+ && make install
+ && curl -o- -L https://yarnpkg.com/install.sh | bash
 
 
 
