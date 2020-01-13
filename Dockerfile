@@ -1,9 +1,13 @@
 FROM php:7.2
-MAINTAINER Rafal Wesolowski <r.wesolowski@nexus-united.com>, Steven Zemelka <s.zemelka@nexus-united.com>
+MAINTAINER Rafal Wesolowski <r.wesolowski@nexus-united.com>, Steven Zemelka <s.zemelka@nexus-united.com>, Jonas Hoppe <j.hoppe@nexus-united.com>
 
-RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip
+RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip python3 python3-pip tar nodejs npm
 
-RUN docker-php-ext-configure soap --enable-soap && docker-php-ext-install soap pdo pdo_mysql
+RUN docker-php-ext-configure dom --enable-dom && docker-php-ext-install dom
+
+RUN docker-php-ext-configure json --enable-json && docker-php-ext-install json
+
+RUN docker-php-ext-configure xmldocker  --enable-xml && docker-php-ext-install xml
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && php composer-setup.php \
@@ -11,12 +15,5 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && mv composer.phar /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && /usr/local/bin/composer global require hirak/prestissimo
- && curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
- && ./configure --prefix=/usr/local
- && make install
- && curl -o- -L https://yarnpkg.com/install.sh | bash
 
-
-
-
-
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
