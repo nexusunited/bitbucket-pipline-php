@@ -7,7 +7,7 @@ RUN docker-php-ext-configure dom --enable-dom && docker-php-ext-install dom
 
 RUN docker-php-ext-configure json --enable-json && docker-php-ext-install json
 
-RUN docker-php-ext-configure xmldocker  --enable-xml && docker-php-ext-install xml
+RUN docker-php-ext-configure xml --enable-xml && docker-php-ext-install xml
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && php composer-setup.php \
