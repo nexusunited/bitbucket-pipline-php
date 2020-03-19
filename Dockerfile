@@ -1,7 +1,7 @@
 FROM php:7.2
 MAINTAINER Rafal Wesolowski <r.wesolowski@nexus-united.com>, Steven Zemelka <s.zemelka@nexus-united.com>, Jonas Hoppe <j.hoppe@nexus-united.com>
 
-RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip python3 python3-pip tar nodejs npm
+RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip python3 python3-pip tar nodejs npm rsync
 
 RUN docker-php-ext-configure dom --enable-dom && docker-php-ext-install dom
 
