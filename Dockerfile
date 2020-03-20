@@ -1,9 +1,9 @@
-FROM php:7.2
-MAINTAINER Rafal Wesolowski <r.wesolowski@nexus-united.com>, Steven Zemelka <s.zemelka@nexus-united.com>
+FROM php:7.4
+MAINTAINER Jonas Neuhaus <j.neuhaus@nexus-united.com>
 
-RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip
+RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip libzip-dev
 
-RUN docker-php-ext-configure soap --enable-soap && docker-php-ext-install soap pdo pdo_mysql
+RUN docker-php-ext-install zip pdo pdo_mysql
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && php composer-setup.php \
@@ -11,8 +11,3 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && mv composer.phar /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && /usr/local/bin/composer global require hirak/prestissimo
-
-
-
-
-
