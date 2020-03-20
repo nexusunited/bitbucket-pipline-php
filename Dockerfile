@@ -4,6 +4,7 @@ MAINTAINER Jonas Neuhaus <j.neuhaus@nexus-united.com>
 RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip libzip-dev
 
 RUN docker-php-ext-install zip pdo pdo_mysql
+RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && php composer-setup.php \
