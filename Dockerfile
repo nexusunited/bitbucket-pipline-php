@@ -1,7 +1,7 @@
 FROM php:7.4
 MAINTAINER Jonas Neuhaus <j.neuhaus@nexus-united.com>
 
-RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip libzip-dev libpng-dev
+RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip libzip-dev libpng-dev wget
 
 RUN docker-php-ext-install zip pdo pdo_mysql intl
 RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
