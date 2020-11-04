@@ -5,10 +5,8 @@ RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip mongo-tool
 
 RUN docker-php-ext-configure soap --enable-soap && docker-php-ext-install soap pdo pdo_mysql && docker-php-ext-enable mongodb && docker-php-ext-enable pcov
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
- && php composer-setup.php \
- && php -r "unlink('composer-setup.php');" \
- && mv composer.phar /usr/local/bin/composer \
+RUN wget https://getcomposer.org/composer-1.phar \
+ && mv composer-1.phar /usr/local/bin/composer \
  && chmod +x /usr/local/bin/composer \
  && /usr/local/bin/composer global require hirak/prestissimo
 
