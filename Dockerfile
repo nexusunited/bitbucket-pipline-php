@@ -6,7 +6,7 @@ RUN rm /etc/localtime \
     && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
     && "date"
 
-RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip mongo-tools libssl-dev bash jq curl zsh bc wget && pecl install mongodb && pecl install pcov
+RUN apt-get update -y && apt-get install -y libxml2-dev git zip unzip mongo-tools libssl-dev bash jq curl zsh bc wget && pecl install mongodb && pecl install pcov && pecl install xdebug
 
 RUN docker-php-ext-configure soap --enable-soap && docker-php-ext-install soap pdo pdo_mysql && docker-php-ext-enable mongodb && docker-php-ext-enable pcov
 
